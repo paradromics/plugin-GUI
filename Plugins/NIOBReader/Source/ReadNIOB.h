@@ -19,26 +19,6 @@ namespace ReadNIOBSpace
 		~ReadNIOB();
         
 
-		/** Indicates if the processor has a custom editor. Defaults to false */
-		//bool hasEditor() const { return true; }
-
-		/** If the processor has a custom editor, this method must be defined to instantiate it. */
-		//AudioProcessorEditor* createEditor() override;
-
-		/** Optional method that informs the GUI if the processor is ready to function. If false acquisition cannot start. Defaults to true */
-		//bool isReady();
-
-		/** Defines the functionality of the processor.
-
-		The process method is called every time a new data buffer is available.
-
-		Processors can either use this method to add new data, manipulate existing
-		data, or send data to an external target (such as a display or other hardware).
-
-		Continuous signals arrive in the "buffer" variable, event data (such as TTLs
-		and spikes) is contained in the "events" variable.
-		*/
-		void process(AudioSampleBuffer& buffer) override;
 
 		/** Handles events received by the processor
 
@@ -162,96 +142,96 @@ public:
     /** Stops recording.*/
     void stopRecording();
 
-    CriticalSection* getMutex()
-    {
-        return &displayMutex;
-    }
-
-    static DataThread* createDataThread(SourceNode* sn);
-
-    GenericEditor* createEditor(SourceNode* sn);
-
-    int getNumBasestations();
-
-    void setMasterSync(int slotIndex);
-    void setSyncOutput(int slotIndex);
-
-    Array<int> getSyncFrequencies();
-    void setSyncFrequency(int slotIndex, int freqIndex);
-
-    ProbeStatus getProbeStatus(unsigned char slot, signed char port);
-    void setSelectedProbe(unsigned char slot, signed char probe);
-    bool isSelectedProbe(unsigned char slot, signed char probe);
-
-    bool checkSlotAndPortCombo(int slotIndex, int portIndex);
-    unsigned char getSlotForIndex(int slotIndex, int portIndex);
-    signed char getPortForIndex(int slotIndex, int portIndex);
-
-    bool runBist(unsigned char slot, signed char port, int bistIndex);
-
-    float getFillPercentage(unsigned char slot);
-
-    ScopedPointer<ProgressBar> progressBar;
-    double initializationProgress;
-
-    /* Helper for loading probes in the background */
-    struct probeSettings {
-        unsigned char slot;
-        signed char port;
-        Array<int> channelStatus;
-        int apGainIndex;
-        int lfpGainIndex;
-        int refChannelIndex;
-        bool disableHighPass;
-    } p_settings;
-    Array<probeSettings> probeSettingsUpdateQueue;
-
-    void updateProbeSettingsQueue();
-    void applyProbeSettingsQueue();
+//    CriticalSection* getMutex()
+//    {
+//        return &displayMutex;
+//    }
+//
+//    static DataThread* createDataThread(SourceNode* sn);
+//
+//    GenericEditor* createEditor(SourceNode* sn);
+//
+//    int getNumBasestations();
+//
+//    void setMasterSync(int slotIndex);
+//    void setSyncOutput(int slotIndex);
+//
+//    Array<int> getSyncFrequencies();
+//    void setSyncFrequency(int slotIndex, int freqIndex);
+//
+//    ProbeStatus getProbeStatus(unsigned char slot, signed char port);
+//    void setSelectedProbe(unsigned char slot, signed char probe);
+//    bool isSelectedProbe(unsigned char slot, signed char probe);
+//
+//    bool checkSlotAndPortCombo(int slotIndex, int portIndex);
+//    unsigned char getSlotForIndex(int slotIndex, int portIndex);
+//    signed char getPortForIndex(int slotIndex, int portIndex);
+//
+//    bool runBist(unsigned char slot, signed char port, int bistIndex);
+//
+//    float getFillPercentage(unsigned char slot);
+//
+//    ScopedPointer<ProgressBar> progressBar;
+//    double initializationProgress;
+//
+//    /* Helper for loading probes in the background */
+//    struct probeSettings {
+//        unsigned char slot;
+//        signed char port;
+//        Array<int> channelStatus;
+//        int apGainIndex;
+//        int lfpGainIndex;
+//        int refChannelIndex;
+//        bool disableHighPass;
+//    } p_settings;
+//    Array<probeSettings> probeSettingsUpdateQueue;
+//
+//    void updateProbeSettingsQueue();
+//    void applyProbeSettingsQueue();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NeuropixThread);
 
 private:
-    bool baseStationAvailable;
-    bool internalTrigger;
-    bool autoRestart;
+//    bool baseStationAvailable;
+//    bool internalTrigger;
+//    bool autoRestart;
 
     bool isRecording;
 
     long int counter;
     int recordingNumber;
 
-    CriticalSection displayMutex;
+//    CriticalSection displayMutex;
 
     void closeConnection();
 
-    Array<int> channelMap;
-    Array<bool> outputOn;
-    Array<int> refs;
+//    Array<int> channelMap;
+//    Array<bool> outputOn;
+//    Array<int> refs;
 
-    uint64_t probeId;
+//    uint64_t probeId;
 
-    int maxCounter;
-    int numRefs;
-    int totalChans;
-    int totalProbes;
+//    int maxCounter;
+//    int numRefs;
+//    int totalChans;
+//    int totalProbes;
 
     uint32_t last_niob_timestamp;
 
-    Array<float> fillPercentage;
+//    Array<float> fillPercentage;
 
-    OwnedArray<Basestation> basestations;
+//    OwnedArray<Basestation> basestations;
 
-
-    unsigned char selectedSlot;
-    signed char selectedPort;
+//
+//    unsigned char selectedSlot;
+//    signed char selectedPort;
 
     
 
     //std::vector<unsigned char> connected_basestations;
     //std::vector<std::vector<int>> connected_probes;
     
-    np::bistElectrodeStats stats[960];
+//    np::bistElectrodeStats stats[960];
 
     RecordingTimer recordingTimer;
 

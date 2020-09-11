@@ -7,10 +7,10 @@ DataThread* NIOBThread::createDataThread(SourceNode *sn)
     return new NIOBThread(sn);
 }
 
-GenericEditor* NIOBThread::createEditor(SourceNode* sn)
-{
-    return new NIOBEditor(sn, this, true);
-}
+//GenericEditor* NIOBThread::createEditor(SourceNode* sn)
+//{
+//    return new NIOBEditor(sn, this, true);
+//}
 
 NIOBThread::NIOBThread(SourceNode* sn) : DataThread(sn), inputAvailable(false)
 {
@@ -147,7 +147,6 @@ void NIOBThread::closeConnection()
 /** Initializes data transfer.*/
 bool NIOBThread::startAcquisition()
 {
-    NIOB->startThread();
     this->startThread();
     return true;
 }
